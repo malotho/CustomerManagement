@@ -1,0 +1,57 @@
+<h1 *ngIf="isAddMode">Add New Product</h1>
+<h1 *ngIf="!isAddMode">Edit Product</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="form-group col">
+      <label for="productName">Product Name</label>
+      <input type="text" formControlName="productName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.productName.errors }" />
+      <div *ngIf="submitted && f.productName.errors" class="invalid-feedback">
+        <div *ngIf="f.productName.errors.required">Product Name is required</div>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label for="productCode">Product Code</label>
+      <input readonly="readonly" type="text" formControlName="productCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.productCode.errors }" />
+      <div *ngIf="submitted && f.productCode.errors" class="invalid-feedback">
+        <div *ngIf="f.productCode.errors.required">Product Name is required</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col">
+      <label for="description">Description</label>
+      <input type="text" formControlName="description" class="form-control" />
+    </div>
+    <div class="form-group col">
+      <label for="category">Category</label>
+      <select (change)="onCategoryChanged($event)" class="browser-default custom-select" formControlName="category" id="category" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+        <option *ngFor="let option of categories" [value]="option.categoryName" >{{option.categoryName}}</option>
+      </select>
+      <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+        <div *ngIf="f.category.errors.required">Product Name is required</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col">
+      <label for="price">Price</label>
+      <input type="text" formControlName="price" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+      <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+        <div *ngIf="f.price.errors.required">Product Name is required</div>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label for="image">Image</label>
+      <div>
+        <img formControlName="image" src="{{imagePath}}" alt="image">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button [disabled]="loading" class="btn btn-primary">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      Save
+    </button>
+    <a routerLink="/product" class="btn btn-link">Cancel</a>
+  </div>
+</form>

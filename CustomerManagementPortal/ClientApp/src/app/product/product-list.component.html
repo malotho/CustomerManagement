@@ -1,0 +1,40 @@
+<h1>Products</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">New Product</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th style="width: 15%">Product Name</th>
+      <th style="width: 15%">Product Code</th>
+      <th style="width: 15%">Description</th>
+      <th style="width: 15%">Category</th>
+      <th style="width: 15%">Price</th>
+      <th style="width: 15%">Image</th>
+      <th style="width: 10%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{product.productName}}</td>
+      <td>{{product.productCode}}</td>
+      <td>{{product.description}}</td>
+      <td>{{product.category.categoryName}}</td>
+      <td>{{product.price}}</td>
+      <td><img src="{{product.image}}" alt="image"></td>
+      <td style="white-space: nowrap">
+        <a routerLink="edit/{{product.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+        <button (click)="deleteProduct(product.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="product.isDeleting">
+          <span *ngIf="product.isDeleting" class="spinner-border spinner-border-sm"></span>
+          <span *ngIf="!product.isDeleting">Delete</span>
+        </button>
+      </td>
+    </tr>
+    <tr *ngIf="!products">
+      <td colspan="4" class="text-center">
+        <span class="spinner-border spinner-border-lg align-center"></span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()">        </ngb-pagination>
+</div>
