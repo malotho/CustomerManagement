@@ -8,7 +8,7 @@ Environment Setup
     docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrong(!)Password" -p 1433:1433 -d mcr.microsoft.com/mssql/server
 
 -- Running the application
-1. Clone the application from https://github.com/sanelemthembu/CustomerManagementPortal.git
+1. Clone the application from https://github.com/malotho/CustomerManagement.git
 2. On Windows explorer, navigate to the repo ("...\CustomerManagementPortal-master\CustomerManagementPortal-master\CustomerManagementPortal")
 3. run the below commands
       - dotnet build
