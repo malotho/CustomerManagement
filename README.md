@@ -1,12 +1,14 @@
 # CustomerManagementPortal
 
+
+```mermaid
 flowchart TD
     A[Start] --> B[Check Product Availability]
     B --> C{Product Available?}
     C -->|Yes| D[Place Order]
     C -->|No| E[End Process]
     D --> F[End: Order Placed]
-
+```
 
 Environment Setup
 
