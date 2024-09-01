@@ -3,27 +3,16 @@
 
 ```mermaid
 flowchart TD
-    A[ProcessDataFromSingleLinkedServer] -->|1. Fetch Last Processed ID| B[ProcessedRecords Table]
-    B -->|2. Return Last Processed ID| A
-    A -->|3. Fetch Batch from Linked Server| C[LinkedServer.SourceDb.received]
-    C -->|4. Return Data Batch| A
-    A -->|5. Insert Data into| D[received_total]
-    A -->|6. Update Last Processed ID| B
+    A[ProcessAllLinkedServersParallelJob] -->|Start| B[ProcessSourceDb1Job]
+    A -->|Start| C[ProcessSourceDb2Job]
+    A -->|Start| D[ProcessSourceDb3Job]
+    A -->|Start| E[ProcessSourceDb4Job]
 
-    %% Parallel Job Execution
-    subgraph Parallel Jobs
-        direction TB
-        E[ProcessAllLinkedServersParallelJob] -->|Start| F[ProcessSourceDb1Job]
-        E -->|Start| G[ProcessSourceDb2Job]
-        E -->|Start| H[ProcessSourceDb3Job]
-        E -->|Start| I[ProcessSourceDb4Job]
-    end
+    B --> F{Process SourceDb1}
+    C --> G{Process SourceDb2}
+    D --> H{Process SourceDb3}
+    E --> I{Process SourceDb4}
 
-    %% Job Steps
-    F -->|Exec Procedure| J[ProcessDataFromSingleLinkedServer]
-    G -->|Exec Procedure| J
-    H -->|Exec Procedure| J
-    I -->|Exec Procedure| J
 
 ```
 
