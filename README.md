@@ -1,20 +1,7 @@
 # CustomerManagementPortal
 
 
-```mermaid
-flowchart TD
-    A[ProcessAllLinkedServersParallelJob] -->|Start| B[ProcessSourceDb1Job]
-    A -->|Start| C[ProcessSourceDb2Job]
-    A -->|Start| D[ProcessSourceDb3Job]
-    A -->|Start| E[ProcessSourceDb4Job]
 
-    B --> F{Process SourceDb1}
-    C --> G{Process SourceDb2}
-    D --> H{Process SourceDb3}
-    E --> I{Process SourceDb4}
-
-
-```
 
 Environment Setup
 
